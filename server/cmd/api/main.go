@@ -35,7 +35,7 @@ func main() {
 	flag.StringVar(&cfg.env, "env", "development", "Aplication environment (development || production)")
 	flag.Parse()
 
-	logger := log.New(os.Stderr, "", log.Ldate|log.Ltime)
+	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
 	app := &application{
 		config: cfg,
@@ -43,7 +43,7 @@ func main() {
 	}
 
 	fmt.Println("Server is running...")
-	//	setting timeout
+	//	setting limit timeout
 	serve := &http.Server{
 		Addr:         fmt.Sprintf(":%d", cfg.port),
 		Handler:      app.routes(),
